@@ -1,0 +1,114 @@
+/* ================= PROMO SLIDER ================= */
+
+.promo-slider {
+  width: 100%;
+  margin-top: 12px;
+}
+
+/* wrapper swiper */
+.grab-swiper {
+  width: 100%;
+  position: relative;
+  overflow: visible; /* biar shadow nggak kepotong */
+  padding-bottom: 36px;
+}
+
+/* slide width */
+.promo-slide {
+  width: 85%;
+  max-width: 360px;
+  box-sizing: border-box;
+}
+
+/* image */
+.slider-img {
+  width: 100%;
+  height: 260px;
+  display: block;
+  object-fit: cover;
+  border-radius: 18px;
+
+  box-shadow: 0 14px 36px rgba(0,0,0,0.22);
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s ease,
+    filter 0.4s ease;
+}
+
+@media (min-width: 768px) {
+  .slider-img {
+    height: 320px;
+  }
+}
+
+/* ================= iOS SCALE EFFECT ================= */
+
+.swiper-slide {
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.35s ease;
+  will-change: transform, opacity;
+}
+
+.swiper-slide-active {
+  transform: scale(1);
+  opacity: 1;
+  z-index: 3;
+}
+
+.swiper-slide-active .slider-img {
+  transform: scale(1.03); /* dikit lebih berasa */
+  box-shadow: 0 26px 60px rgba(0,0,0,0.32);
+  filter: saturate(1.05) contrast(1.02);
+}
+
+.swiper-slide-prev,
+.swiper-slide-next {
+  transform: scale(0.96); /* jangan terlalu kecil */
+  opacity: 0.82;
+  z-index: 1;
+}
+
+/* ================= PAGINATION ================= */
+
+.grab-swiper .swiper-pagination {
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  z-index: 5;
+}
+
+.grab-swiper .swiper-pagination-bullet {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.85);
+  border: 1px solid rgba(0,0,0,0.15);
+  opacity: 1;
+  transition: width 0.25s ease, background 0.25s ease;
+}
+
+.grab-swiper .swiper-pagination-bullet-active {
+  width: 16px;
+  background: #ffffff;
+}
+
+/* ================= SUBTLE OVERLAY ================= */
+
+.grab-swiper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.06),
+    transparent 45%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
