@@ -1,114 +1,150 @@
 /* ================= PROMO SLIDER ================= */
-
 .promo-slider {
   width: 100%;
-  margin-top: 12px;
+  margin-top: 20px;
 }
 
-/* wrapper swiper */
+/* Swiper wrapper */
 .grab-swiper {
   width: 100%;
   position: relative;
-  overflow: visible; /* biar shadow nggak kepotong */
-  padding-bottom: 36px;
+  overflow: visible;
+  padding-bottom: 40px;
+  perspective: 1200px;
 }
 
-/* slide width */
+/* Slide container */
 .promo-slide {
   width: 85%;
-  max-width: 360px;
+  max-width: 400px;
   box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  transition: transform 0.4s ease, filter 0.4s ease;
 }
 
-/* image */
+/* Image style */
 .slider-img {
   width: 100%;
-  height: 260px;
-  display: block;
+  height: 280px;
   object-fit: cover;
   border-radius: 18px;
-
-  box-shadow: 0 14px 36px rgba(0,0,0,0.22);
-  transition:
-    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.4s ease,
-    filter 0.4s ease;
+  filter: brightness(0.95) contrast(1.05) saturate(1.05);
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.25);
+  transform-origin: center;
+  transition: transform 0.8s ease, filter 0.6s ease, box-shadow 0.6s ease;
 }
 
-@media (min-width: 768px) {
-  .slider-img {
-    height: 320px;
+/* Zoom animation for active slide */
+.swiper-slide-active .slider-img {
+  animation: zoomActive 3s ease-in-out forwards;
+  filter: brightness(1.05) saturate(1.15);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* Keyframe for zoom effect */
+@keyframes zoomActive {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
   }
 }
 
-/* ================= iOS SCALE EFFECT ================= */
-
-.swiper-slide {
-  transition:
-    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 0.35s ease;
-  will-change: transform, opacity;
-}
-
-.swiper-slide-active {
-  transform: scale(1);
-  opacity: 1;
-  z-index: 3;
-}
-
-.swiper-slide-active .slider-img {
-  transform: scale(1.03); /* dikit lebih berasa */
-  box-shadow: 0 26px 60px rgba(0,0,0,0.32);
-  filter: saturate(1.05) contrast(1.02);
-}
-
+/* Depth feel on inactive slides */
 .swiper-slide-prev,
 .swiper-slide-next {
-  transform: scale(0.96); /* jangan terlalu kecil */
-  opacity: 0.82;
-  z-index: 1;
+  transform: scale(0.9) rotateY(5deg);
+  opacity: 0.75;
+  transition: transform 0.6s ease, opacity 0.6s ease;
 }
 
-/* ================= PAGINATION ================= */
-
-.grab-swiper .swiper-pagination {
+/* ================= TEXT OVERLAY ================= */
+.slide-caption {
   position: absolute;
-  bottom: 8px;
+  bottom: 20px;
   left: 0;
-  right: 0;
-
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  z-index: 5;
+  width: 100%;
+  padding: 0 24px;
+  text-align: left;
+  color: #fff;
+  z-index: 10;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.7s ease;
+  pointer-events: none;
 }
 
-.grab-swiper .swiper-pagination-bullet {
-  width: 6px;
-  height: 6px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.85);
-  border: 1px solid rgba(0,0,0,0.15);
+.slide-caption h2 {
+  font-family: var(--font-secondary);
+  font-size: clamp(18px, 3vw, 26px);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  margin-bottom: 4px;
+}
+
+.slide-caption p {
+  font-size: clamp(14px, 2vw, 16px);
+  font-weight: 400;
+  opacity: 0.9;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* Reveal caption on active slide */
+.swiper-slide-active .slide-caption {
   opacity: 1;
-  transition: width 0.25s ease, background 0.25s ease;
+  transform: translateY(0);
 }
 
-.grab-swiper .swiper-pagination-bullet-active {
-  width: 16px;
-  background: #ffffff;
-}
-
-/* ================= SUBTLE OVERLAY ================= */
-
-.grab-swiper::after {
+/* Overlay gradient */
+.promo-slide::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.06),
-    transparent 45%
-  );
-  pointer-events: none;
-  z-index: 2;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.1));
+  opacity: 0.9;
+  border-radius: 18px;
+  z-index: 3;
+}
+
+/* ================= PAGINATION ================= */
+.grab-swiper .swiper-pagination {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  z-index: 10;
+}
+
+.grab-swiper .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.grab-swiper .swiper-pagination-bullet-active {
+  width: 20px;
+  background: var(--primary-color);
+  box-shadow: 0 0 10px rgba(255, 80, 50, 0.5);
+}
+
+/* ================= RESPONSIVE ================= */
+@media (min-width: 768px) {
+  .slider-img {
+    height: 340px;
+  }
+
+  .slide-caption {
+    bottom: 30px;
+    padding: 0 40px;
+  }
 }

@@ -1,18 +1,32 @@
 import React from "react";
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
+import "./about.css"
 
-export default function AboutUs() {
-  return (
-    <>
-      <Header />
+const Aboutus = () => (
+  <main className="about-container">
+    
+    <section className="">
+      <div className="">
 
-      <main>
-        <h1>About Us</h1>
-        <p>Ini halaman About Us.</p>
-      </main>
+      </div>
+    </section>
 
-      <Footer />
-    </>
-  );
-}
+    <section className="">
+
+    </section>
+
+    <section className="">
+
+    </section>
+
+    <section className="">
+
+    </section>
+
+    <section className="">
+
+    </section>
+
+  </main>
+);
+
+export default Aboutus;

@@ -1,5 +1,8 @@
 import React from 'react';
 import logoDark from '../../assets/image/logo-rustic-marinara.webp'
+import { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import { ReactComponent as FacebookIcon } from '../../assets/icons/ic_baseline-facebook.svg';
 import { ReactComponent as InstagramIcon } from '../../assets/icons/mdi_instagram.svg';
 import { ReactComponent as TwitterIcon } from '../../assets/icons/mdi_twitter.svg';
@@ -10,6 +13,13 @@ import { ReactComponent as ContactCall } from '../../assets/icons/fluent_call-28
 import './footer.css';
 
 const Footer = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: true,
+      offset: 100,
+    });
+  }, []);
   return (
     <footer className="footer" data-aos="fade-up">
       <div className="footer-section">

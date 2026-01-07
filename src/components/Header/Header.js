@@ -1,15 +1,20 @@
-import { NavLink } from "react-router-dom";
-import logoTerang from '../../assets/image/logo.webp'
-import { useState } from "react";
-import { useEffect } from "react";
+import { NavLink, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
+import logoTerang from "../../assets/image/logo.webp";
 import "./header.css";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
 
+  // Tutup menu setiap pindah halaman
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [location]);
+
+  // Lock body scroll saat menu terbuka
   useEffect(() => {
     document.body.classList.toggle("lock", menuOpen);
-
     return () => {
       document.body.classList.remove("lock");
     };
@@ -29,10 +34,14 @@ export default function Header() {
           <NavLink to="/" className={navClass}>HOME</NavLink>
           <NavLink to="/menu" className={navClass}>MENU</NavLink>
           <NavLink to="/deals" className={navClass}>DEALS</NavLink>
-          <NavLink to="../pages/About-us.js" className={navClass}>ABOUT US</NavLink>
+          <NavLink to="/about-us" className={navClass}>ABOUT US</NavLink>
         </nav>
 
-        <button className="menu-toggle" onClick={() => setMenuOpen(true)}>
+        <button
+          className="menu-toggle"
+          onClick={() => setMenuOpen(true)}
+          aria-label="Open menu"
+        >
           ☰
         </button>
       </header>
@@ -43,14 +52,18 @@ export default function Header() {
       />
 
       <nav className={`sidebar ${menuOpen ? "open" : ""}`}>
-        <button className="close-btn" onClick={() => setMenuOpen(false)}>
+        <button
+          className="close-btn"
+          onClick={() => setMenuOpen(false)}
+          aria-label="Close menu"
+        >
           ✕
         </button>
 
-        <NavLink to="/" className={navClass} onClick={() => setMenuOpen(false)}>HOME</NavLink>
-        <NavLink to="/menu" className={navClass} onClick={() => setMenuOpen(false)}>MENU</NavLink>
-        <NavLink to="/deals" className={navClass} onClick={() => setMenuOpen(false)}>DEALS</NavLink>
-        <NavLink to="/about-us" className={navClass} onClick={() => setMenuOpen(false)}>ABOUT US</NavLink>
+        <NavLink to="/" className={navClass}>HOME</NavLink>
+        <NavLink to="/menu" className={navClass}>MENU</NavLink>
+        <NavLink to="/deals" className={navClass}>DEALS</NavLink>
+        <NavLink to="/about-us" className={navClass}>ABOUT US</NavLink>
       </nav>
     </>
   );
