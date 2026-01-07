@@ -8,7 +8,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   padding: var(--space-section) 0 var(--space-section-tight);
 }
 
@@ -214,21 +213,22 @@
 
 /* PROMO IMAGES */
 .testimonial-promo {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   justify-content: center;
   align-items: stretch;
-  flex-wrap: wrap;
-  gap: 20px;
+  flex-wrap: wrap; 
+  gap: clamp(20px, 3vw, 40px);
   width: 100%;
   max-width: 1440px;
   margin-bottom: var(--space-section-tight);
 }
 
 .testimonial-promo img {
-  flex: 1 1 45%;
+  flex: 1;
   max-width: 540px;
   width: 100%;
-  border-radius: 12px;
+  border-radius: 16px;
   object-fit: cover;
   background-color: var(--light-bg-color);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
@@ -333,11 +333,8 @@
 
   background: linear-gradient(
     135deg,
-    color-mix(in srgb, var(--mockup-color), #ffffff 8%),
-    var(--mockup-color)
+    var(--mockup-color) 100%
   );
-}
-.download-app-container {
 
   border-radius: 20px;
   padding: clamp(32px, 6vw, 64px);
@@ -522,15 +519,17 @@
 @media (max-width: 768px) {
   .header-menu,
   .testimonial-top {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
     padding: 0;
   }
 
   .header-menu a,
   .testimonial-link {
     font-size: 14px;
+    white-space: nowrap;
   }
 
   .carousel {
@@ -542,8 +541,7 @@
   }
 
   .testimonial-promo {
-    flex-direction: column;
-    align-items: center;
+    grid-template-columns: 1fr;
     gap: 20px;
   }
 

@@ -153,17 +153,27 @@ const Home = () => {
 
       {/* TESTIMONIAL */}
       <section className="testimonial-section">
-        <h1 className="testimonial-title">
-          What Our <span>Customers</span> Are Saying
-        </h1>
-
-        <div className="testimonial-grid">
-          {testimonials.map((t) => (
-            <div className="testimonial-card reveal delay-1" key={t.id}>
-              <div className="stars">★★★★★</div>
-              <p>{t.text}</p>
-              <span>— {t.name}</span>
+        <div className="testimonial-top">
+                <h2 className="testimonial-eyebrow">Enjoy more foods cheaper!</h2>
+                <a href="deals" className="testimonial-link">See all deals</a>
             </div>
+
+            <div className="testimonial-promo">
+                <img src={specialOffer1} alt="Family Meal Special Offer" />
+                <img src={specialOffer2} alt="June Special Offer" />
+            </div>
+
+            <h1 className="testimonial-title">
+              What Our <span>Customers</span> Are Saying
+            </h1>
+
+          <div className="testimonial-grid">
+            {testimonials.map((t) => (
+              <div className="testimonial-card reveal delay-1" key={t.id}>
+                <div className="stars">★★★★★</div>
+                <p>{t.text}</p>
+                <span>— {t.name}</span>
+              </div>
           ))}
         </div>
       </section>
