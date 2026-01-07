@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./deals.css";
 
 import specialOffer1 from "../../assets/slider/special-offer-1.png";
@@ -42,12 +42,31 @@ const promos = [
 ];
 
 const Deals = () => {
+  useEffect(() => {
+    const elements = document.querySelectorAll(".reveal");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    elements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <main className="deals-container">
       {promos.map((promo, index) => (
         <section
           key={promo.id}
-          className={`special-offers special-offers-${index + 1} reveal delay-${index + 1}`}
+          className={`special-offers reveal delay-${index + 1}`}
         >
           <div className="offer-image">
             <img src={promo.image} alt={promo.title} />
