@@ -1,0 +1,117 @@
+/* ================= DEALS SECTION ================= */
+
+.deals-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: var(--space-section) 20px;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-section);
+}
+
+/* ================= PROMO CARD ================= */
+
+.special-offers {
+  background-color: #fff;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+
+  box-shadow: var(--shadow-mid);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.special-offers:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-deep);
+}
+
+/* ================= IMAGE ================= */
+
+.offer-image img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* ================= CONTENT ================= */
+
+.offer-content {
+  padding: clamp(20px, 4vw, 32px);
+  font-family: var(--font-secondary);
+}
+
+.offer-content h2 {
+  font-family: var(--font-primary);
+  font-size: clamp(20px, 2.6vw, 26px);
+  font-weight: 700;
+  color: var(--primary-color);
+
+  margin-bottom: 10px;
+}
+
+.offer-content p {
+  color: #555;
+  margin-bottom: 14px;
+  font-size: 15px;
+}
+
+/* ================= PROMO CODE ================= */
+
+.promo-code {
+  display: inline-block;
+  margin-bottom: 18px;
+
+  padding: 6px 16px;
+  border-radius: 999px;
+
+  background-color: var(--light-bg-color);
+  color: var(--primary-color);
+
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* ================= LIST ================= */
+
+.offer-content ul {
+  padding-left: 18px;
+}
+
+.offer-content li {
+  margin-bottom: 10px;
+  line-height: 1.6;
+  font-size: 15px;
+  color: #444;
+}
+
+/* ================= VARIANT ACCENT ================= */
+
+.special-offers-1 .promo-code {
+  background-color: #ffe5dc;
+}
+
+.special-offers-2 .promo-code {
+  background-color: #fff1cc;
+}
+
+.special-offers-3 .promo-code {
+  background-color: #e9f2ea;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 600px) {
+  .deals-container {
+    padding: var(--space-section-tight) 16px;
+  }
+
+  .offer-content {
+    padding: 20px;
+  }
+
+  .offer-content h2 {
+    font-size: 18px;
+  }
+}

@@ -1,578 +1,108 @@
-.delay-1 { transition-delay: 0.1s; }
-.delay-2 { transition-delay: 0.2s; }
-.delay-3 { transition-delay: 0.3s; }
-.delay-4 { transition-delay: 0.45s; }
-
-/* ================= HERO ================= */
-.home-hero {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-section) 0 var(--space-section-tight);
-}
-
-/* ================= CONTAINER ================= */
-.home-container {
-  width: 100%;
-}
-
-/* ================= PROMO SLIDER ================= */
-.grab-swiper {
-  overflow: hidden;
-  margin: var(--space-section-tight) 20px;
-}
-
-.slider-img {
-  width: 100%;
-  display: block;
-  border-radius: 8px;
-}
-
-/* ================= HERO CONTENT ================= */
-.hero-content {
-  max-width: 1400px;
-  width: 100%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0 8%;
-  text-align: center;
-}
-
-.hero-content h1 {
-  font-family: var(--font-secondary);
-  font-weight: 700;
-  font-size: clamp(32px, 4vw, 42px);
-  color: var(--secondary-color);
-  margin-bottom: 20px;
-}
-
-.brand-name {
-  color: var(--primary-color);
-}
-
-.hero-subtitle {
-  font-family: var(--font-primary);
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.6;
-  max-width: 800px;
-  color: var(--secondary-color);
-  opacity: 0.9;
-  margin-bottom: var(--space-section-tight);
-}
-
-/* ================= HEADER MENU & TESTIMONIAL TOP ================= */
-.header-menu,
-.testimonial-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center; /* sejajarkan teks & link */
+.deals-container {
   width: 100%;
   max-width: 1200px;
-  margin-bottom: 24px;
-  padding: 0 4%;
-  gap: 10px;
-  flex-wrap: wrap;
+  margin: 0 auto;
+
+  padding: var(--space-section) 4%;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-section-tight);
 }
 
-.header-menu h2,
-.testimonial-eyebrow {
+.special-offers {
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.special-offers:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-mid);
+}
+
+.offer-image img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+.offer-content {
+  padding: clamp(20px, 4vw, 32px);
+  text-align: left;
+}
+
+.offer-content h2 {
   font-size: clamp(20px, 2vw, 26px);
   font-weight: 600;
   color: var(--secondary-color);
   font-family: var(--font-primary);
-  margin: 0;
+  margin-bottom: 12px;
 }
 
-/* ================= LINK STYLE (See all menu & deals) ================= */
-.header-menu a,
-.testimonial-link {
-  position: relative;
+.promo-code {
   display: inline-block;
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--primary-color);
-  text-decoration: none;
-  transition: color 0.3s ease, transform 0.3s ease;
-  padding-bottom: 2px;
-  line-height: 1;
-}
+  margin-bottom: 16px;
 
-.header-menu a:hover,
-.testimonial-link:hover {
-  color: color-mix(in srgb, var(--primary-color), black 15%);
-  transform: translateY(-1px);
-}
-
-/* Underline animation */
-.header-menu a::after,
-.testimonial-link::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -2px;
-  width: 100%;
-  height: 1px;
-  background: currentColor;
-  opacity: 0.4;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease;
-}
-
-.header-menu a:hover::after,
-.testimonial-link:hover::after {
-  transform: scaleX(1);
-}
-
-/* ================= CAROUSEL ================= */
-.carousel {
-  display: flex;
-  gap: clamp(16px, 2.5vw, 32px);
-  width: 100%;
-  overflow-x: auto;
-  padding: 12px 0 28px;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  cursor: grab;
-}
-
-.carousel:active {
-  cursor: grabbing;
-}
-
-.carousel::-webkit-scrollbar {
-  display: none;
-}
-
-.carousel::before,
-.carousel::after {
-  content: '';
-  flex: 0 0 clamp(24px, 6vw, 100px);
-}
-
-/* ================= CARD ================= */
-.card-item {
-  flex: 0 0 clamp(180px, 25vw, 240px);
-  scroll-snap-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  text-align: center;
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.card-item:hover {
-  transform: translateY(-5px) scale(1.05);
-}
-
-.pizza-image {
-  width: 100%;
-  height: 200px;
-  max-width: 200px;
-  object-fit: contain;
-  border-radius: 10px;
-  background-color: var(--light-bg-color);
-  padding: 8px;
-  transition: transform 0.35s ease, box-shadow 0.3s ease;
-}
-
-.card-item:hover .pizza-image {
-  transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
-}
-
-.pizza-name {
-  margin-top: 12px;
-  padding: 0 10px;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1.4;
-  color: var(--secondary-color);
-  opacity: 0.9;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* ================= TESTIMONIAL ================= */
-.testimonial-section {
-  background: var(--light-bg-color);
-  text-align: center;
-  width: 100%;
-  padding: var(--space-section-tight) 8% var(--space-section);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* PROMO IMAGES */
-.testimonial-promo {
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
-  flex-wrap: wrap;
-  gap: 20px;
-  width: 100%;
-  max-width: 1440px;
-  margin-bottom: var(--space-section-tight);
-}
-
-.testimonial-promo img {
-  flex: 1 1 45%;
-  max-width: 540px;
-  width: 100%;
-  border-radius: 12px;
-  object-fit: cover;
-  background-color: var(--light-bg-color);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.testimonial-promo img:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
-}
-
-/* TITLE */
-.testimonial-title {
-  font-family: var(--font-secondary);
-  font-weight: 700;
-  font-size: clamp(24px, 4vw, 38px);
-  color: var(--secondary-color);
-  margin-bottom: var(--space-section-tight);
-}
-
-.testimonial-title span {
-  color: var(--primary-color);
-}
-
-/* GRID TESTIMONIALS */
-.testimonial-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
-  width: 100%;
-  max-width: 1200px;
-}
-
-.testimonial-card {
-  background: var(--light-bg-color);
-  border-radius: 16px;
-  padding: 28px 24px;
-  text-align: center;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.20);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.testimonial-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
-}
-
-.stars {
-  color: var(--star-color);
-  font-size: 22px;
-  letter-spacing: 3px;
-  margin-bottom: 10px;
-}
-
-.testimonial-card p {
-  font-size: 15px;
   font-family: var(--font-primary);
+  font-size: 14px;
+  font-weight: 600;
+
+  color: var(--primary-color);
+  background: var(--light-bg-color);
+
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+.promo-code:hover {
+  background: var(--mockup-color);
+  cursor: pointer;
+}
+
+.offer-content p {
+  color: #555;
+  margin-bottom: 14px;
+  font-size: 15px;
+}
+
+.offer-content ul {
+  padding-left: 18px;
+}
+
+.offer-content li {
+  font-family: var(--font-primary);
+  font-size: 15px;
   line-height: 1.6;
   font-weight: 500;
-  color: var(--secondary-color);
-  margin-bottom: 10px;
-}
 
-.testimonial-card span {
-  display: block;
-  font-size: 13px;
-  font-weight: 600;
-  opacity: 0.7;
-}
-
-/* ================= SCROLL REVEAL ================= */
-.reveal {
-  opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.reveal.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ================= DOWNLOAD APP SECTION ================= */
-.download-app-section {
-  width: 100%;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  padding: clamp(48px, 8vw, 96px) 5%;
-  margin-bottom: var(--space-section);
-
-  position: relative;
-  z-index: 1;
-}
-
-.download-app-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  background: linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--mockup-color), #ffffff 8%),
-    var(--mockup-color)
-  );
-}
-.download-app-container {
-
-  border-radius: 20px;
-  padding: clamp(32px, 6vw, 64px);
-
-  width: 100%;
-  max-width: 1200px;
-
-  position: relative;
-  overflow: hidden;
-  gap: clamp(32px, 6vw, 56px);
-
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
-}
-
-/* subtle grain / highlight */
-.download-app-container::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    circle at top left,
-    rgba(255, 255, 255, 0.35),
-    transparent 60%
-  );
-  pointer-events: none;
-}
-
-/* ================= MOCKUP ================= */
-.app-mockup {
-  position: relative;
-  flex: 0 0 260px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 2; 
-}
-
-.mockup-placeholder {
-  position: relative;
-  width: min(100%, 360px);
-  aspect-ratio: 4 / 3;
-  border-radius: 20px;
-  background: transparent;
-  overflow: visible; 
-}
-
-.mockup-placeholder::before {
-  content: "";
-  position: absolute;
-  inset: 10px;
-  z-index: 0;
-}
-
-.mockup-placeholder::after {
-  content: "";
-  position: absolute;
-  inset: -12%;
-  background: radial-gradient(
-    circle,
-    rgba(0, 0, 0, 0.12),
-    transparent 60%
-  );
-  z-index: -1;
-  filter: blur(18px);
-}
-
-.mockup-placeholder img {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  z-index: 1; 
-  filter: drop-shadow(0 8px 20px rgba(0,0,0,0.15));
-}
-
-/* ================= TEXT ================= */
-.app-content {
-  flex: 1;
-}
-
-.app-content h2 {
-  font-family: var(--font-secondary);
-  font-size: clamp(26px, 4vw, 40px);
-  font-weight: 800;
-  color: var(--secondary-color);
-  line-height: 1.25;
-  margin-bottom: 18px;
-}
-
-.app-content span {
-  color: var(--primary-color);
-}
-
-.app-content p {
-  font-family: var(--font-primary);
-  font-size: 1rem;
-  line-height: 1.7;
   color: var(--secondary-color);
   opacity: 0.85;
-  max-width: 520px;
+
+  margin-bottom: 8px;
 }
 
-.app-mockup.reveal {
-  transform: translateY(40px) scale(0.96);
+.special-offers.reveal {
+  opacity: 0;
+  transform: translateY(32px);
 }
 
-.app-mockup.reveal.show {
-  transform: translateY(0) scale(1);
+.special-offers.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-/* ================= QR BUTTON ================= */
-.qr-button {
-  appearance: none;
-  background: #ffffff;
-  border: none;
-  cursor: pointer;
-
-  position: absolute;
-  top: 24px;
-  right: 24px;
-
-  padding: 14px 12px;
-  border-radius: 14px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.qr-button:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.2);
-}
-
-/* ================= QR ================= */
-.qr-container-inner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #ffffff;
-}
-
-.qr-placeholder {
-  width: 44px;
-  height: 44px;
-  border-radius: 10px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  font-size: 14px;
-  font-weight: 700;
-  color: #000;
-
-  border: 1.5px solid rgba(0, 0, 0, 0.15);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
-}
-
-.qr-text-hint {
-  font-family: var(--font-primary);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.6px;
-  color: #5c6f37;
-  opacity: 0.9;
-}
-
-
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation: none !important;
-    transition: none !important;
-  }
-}
-
-/* ================= RESPONSIVE ================= */
-@media (max-width: 768px) {
-  .header-menu,
-  .testimonial-top {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-    padding: 0;
+@media (min-width: 768px) {
+  .deals-container {
+    padding: var(--space-section) 6%;
+    gap: var(--space-section);
   }
 
-  .header-menu a,
-  .testimonial-link {
-    font-size: 14px;
-  }
-
-  .carousel {
-    padding-bottom: 36px;
-  }
-
-  .card-item {
-    scroll-snap-align: start;
-  }
-
-  .testimonial-promo {
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-
-  .testimonial-promo img {
-    max-width: 100%;
-  }
-
-  .download-app-container {
-    flex-direction: column;
-    text-align: center;
-    gap: 28px;
-  }
-
-  .mockup-placeholder {
-    width: 90%;
-    max-width: 300px;
-  }
-
-  .app-mockup {
-    flex: unset;
-    order: 1;
-  }
-
-  .app-content {
-    order: 2;
-  }
-
-  .qr-button {
-    position: static;
-    order: 3;
+  .offer-content {
+    padding: 20px;
   }
 }
