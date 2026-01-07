@@ -47,7 +47,7 @@ const Deals = () => {
       {promos.map((promo, index) => (
         <section
           key={promo.id}
-          className={`special-offers special-offers-${index + 1}`}
+          className={`special-offers special-offers-${index + 1} reveal delay-${index + 1}`}
         >
           <div className="offer-image">
             <img src={promo.image} alt={promo.title} />
