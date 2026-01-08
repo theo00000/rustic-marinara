@@ -1,3 +1,213 @@
-.about-container {
-    width: 100%;
+/* ================= ABOUT PAGE ================= */
+
+.about-us {
+  max-width: 1440px;
+  margin: auto;
+  padding: clamp(64px, 8vw, 96px) 20px;
+  font-family: var(--font-primary);
+  color: var(--secondary-color);
+}
+
+/* ================= EYEBROW & TITLE ================= */
+
+.about-eyebrow {
+  text-align: center;
+  font-style: italic;
+  color: #8c2e34;
+  margin-bottom: 16px;
+}
+
+.about-title {
+  text-align: center;
+  font-size: clamp(28px, 4vw, 42px);
+  margin-bottom: 56px;
+  font-family: var(--font-secondary);
+}
+
+.about-title span {
+  color: #8c2e34;
+}
+
+/* ================= INTRO ================= */
+
+.about-intro {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: clamp(24px, 5vw, 48px);
+  align-items: center;
+  margin-bottom: clamp(64px, 8vw, 96px);
+}
+
+.about-intro p {
+  line-height: 1.7;
+  max-width: 620px;
+}
+
+.about-intro img {
+  width: 100%;
+  border-radius: 18px;
+  object-fit: cover;
+}
+
+/* ================= SIGNATURE ================= */
+
+.about-signature {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: clamp(24px, 5vw, 48px);
+  align-items: center;
+  margin-bottom: 56px;
+}
+
+.about-signature img {
+  width: 100%;
+  border-radius: 18px;
+}
+
+.about-signature h3 {
+  font-size: clamp(22px, 3vw, 28px);
+  margin-bottom: 12px;
+  font-family: var(--font-secondary);
+}
+
+.about-signature h3 span {
+  color: #8c2e34;
+}
+
+.about-signature p {
+  line-height: 1.7;
+  max-width: 620px;
+}
+
+/* ================= QUOTE ================= */
+
+.about-quote {
+  text-align: center;
+  font-style: italic;
+  margin: 56px 0;
+  color: #8c2e34;
+}
+
+/* ================= DISHES ================= */
+
+.about-dishes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  margin: clamp(40px, 6vw, 64px) 0;
+}
+
+.about-dishes img {
+  width: 100%;
+  border-radius: 16px;
+  object-fit: cover;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.about-dishes img:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+}
+
+/* ================= TEXT ================= */
+
+.about-text {
+  max-width: 800px;
+  margin: auto;
+  line-height: 1.75;
+}
+
+.about-text.center {
+  text-align: center;
+}
+
+/* ================= BOTTOM TITLE ================= */
+
+.about-bottom-title {
+  text-align: center;
+  font-size: clamp(22px, 3vw, 28px);
+  margin: clamp(56px, 7vw, 72px) 0 20px;
+  font-family: var(--font-secondary);
+}
+
+.about-bottom-title span {
+  color: #8c2e34;
+}
+
+/* ================= STORY ================= */
+
+.about-story {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin: clamp(40px, 6vw, 64px) 0;
+}
+
+.about-story img {
+  width: 100%;
+  border-radius: 16px;
+  object-fit: cover;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.about-story img:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+}
+
+/* ================= FOOTER QUOTE ================= */
+
+.about-footer {
+  text-align: center;
+  font-style: italic;
+  margin-top: 56px;
+  color: #8c2e34;
+}
+
+/* ================= SCROLL REVEAL ================= */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s ease,
+              transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* delay helpers */
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.45s; }
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+  .about-intro,
+  .about-signature {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .about-intro p,
+  .about-signature p {
+    margin: auto;
+  }
+
+  .about-text {
+    padding: 0 8px;
+  }
+}
+
+/* ================= REDUCED MOTION ================= */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
 }

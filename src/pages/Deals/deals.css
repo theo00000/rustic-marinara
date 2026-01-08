@@ -95,11 +95,34 @@
 
 @media (max-width: 768px) {
   .deals-container {
-    padding: var(--space-section-tight) 0;
+    padding: var(--space-section-tight) 16px;
+    gap: 20px;
+  }
+
+  .special-offers {
+    max-width: 520px;
+    margin: 0 auto;
+    border-radius: 14px;
   }
 
   .offer-content {
-    padding: 20px;
+    padding: 16px 18px;
+  }
+
+  .offer-content h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .promo-code {
+    font-size: 12px;
+    padding: 4px 12px;
+    margin-bottom: 12px;
+  }
+
+  .offer-content li {
+    font-size: 14px;
+    line-height: 1.5;
   }
 }
 @media (min-width: 1440px) {
