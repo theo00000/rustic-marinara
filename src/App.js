@@ -8,7 +8,7 @@ import 'aos/dist/aos.css';
 const Home = lazy(() => import("./pages/Home/Home"));
 const Menu = lazy(() => import("./pages/Menu/Menu"));
 const Deals = lazy(() => import("./pages/Deals/Deals"));
-const AboutUs = lazy(() => import("./pages/AboutUs/About-us"));
+const AboutUs = lazy(() => import("./pages/AboutUs/AboutUs"));
 
 function ScrollToTopAndAOS() {
   const location = useLocation();
@@ -40,7 +40,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/menu" element={<Menu />} />
             <Route path="/deals" element={<Deals />} />
-            <Route path="/about" element={<AboutUs />} />
+            <Route path="/about-us" element={<AboutUs />} />
           </Routes>
       </main>
       <Footer />
