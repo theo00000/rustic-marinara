@@ -60,6 +60,7 @@
   font-size: 16px;
   max-width: 560px;
   line-height: 1.8;
+  text-align: justify;
   font-weight: 500;
   color: var(--secondary-color);
   opacity: 0.9;
@@ -69,7 +70,7 @@
   font-family: var(--font-primary);
   font-size: 16px;
   max-width: 560px;
-  text-align: center;
+  text-align: justify;
   line-height: 1.8;
   font-weight: 500;
   color: var(--secondary-color);
