@@ -5,6 +5,9 @@ import Footer from "./components/Footer/Footer";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
+import AddProduct from "./pages/Admin/AddProduct";
+import ProductList from "./pages/Admin/ProductList";
+
 const Home = lazy(() => import("./pages/Home/Home"));
 const Menu = lazy(() => import("./pages/Menu/Menu"));
 const Deals = lazy(() => import("./pages/Deals/Deals"));
@@ -22,12 +25,17 @@ function ScrollToTopAndAOS() {
 }
 
 function App() {
+  const handleEdit = (product) => {
+    console.log("Edit product:", product);
+  };
+  
   useEffect(() => {
     AOS.init({
       duration: 800,
       easing: 'ease-out-cubic',
       once: true,
     });
+
   }, []);
 
   return (
@@ -41,6 +49,10 @@ function App() {
             <Route path="/menu" element={<Menu />} />
             <Route path="/deals" element={<Deals />} />
             <Route path="/about-us" element={<AboutUs />} />
+
+            {/* ADMIN */}
+            <Route path="/admin/add-product" element={<AddProduct />} />
+            <Route path="/admin/product" element={<ProductList onEdit={handleEdit} />} />
           </Routes>
       </main>
       <Footer />
