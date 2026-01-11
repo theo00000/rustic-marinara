@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 import menuBanner from "../../assets/banner/menu-banner.png";
 import "./menu.css";
@@ -71,7 +71,7 @@ export default function Menu() {
         {/* GRID */}
         <div className="menu-grid">
           {filteredProducts.map((item) => (
-            <div className="menu-card" key={item._id}>
+            <Link to={`/menu/${item._id}`} className="menu-card" key={item._id}>
               <img
                 src={`http://localhost:5000${item.image}`}
                 alt={item.name}
@@ -86,7 +86,7 @@ export default function Menu() {
               </div>
 
               <button className="add-btn">+</button>
-            </div>
+            </Link>
           ))}
         </div>
 
