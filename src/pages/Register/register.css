@@ -1,0 +1,171 @@
+/* ================= REGISTER PAGE ================= */
+.register-page {
+  min-height: calc(100vh - 160px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-section);
+  background-color: var(--light-bg-color);
+}
+
+/* ================= CARD ================= */
+.register-card {
+  width: 100%;
+  max-width: 420px;
+  background: #fff;
+  padding: 40px 36px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  animation: fadeUp 0.8s ease forwards;
+  transition: transform 0.2s ease;
+}
+
+/* ================= TITLE ================= */
+.register-card h2 {
+  font-family: var(--font-primary);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+/* ================= FORM ================= */
+.register-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ================= INPUT ================= */
+.register-card input {
+  font-family: var(--font-secondary);
+  padding: 14px 16px;
+  font-size: 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid #ddd;
+  background-color: #fff;
+  transition: var(--transition-fast);
+}
+
+.register-card input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(140, 46, 52, 0.12);
+}
+
+/* ================= PASSWORD TOGGLE ================= */
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper input {
+  flex: 1;
+  padding-right: 40px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  user-select: none;
+  font-size: 1.2rem;
+  color: #333;
+  background: none;
+  border: none;
+  transition: transform 0.2s ease;
+}
+
+.toggle-password:hover,
+.toggle-password:focus {
+  transform: translateY(-50%) scale(1.2);
+  outline: none;
+}
+
+/* ================= BUTTON ================= */
+.register-card button[type="submit"] {
+  margin-top: 8px;
+  padding: 14px;
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  background-color: var(--primary-color);
+  color: #fff;
+  transition: var(--transition-fast);
+}
+
+.register-card button[type="submit"]:hover {
+  background-color: #73252a;
+}
+
+.register-card button[type="submit"]:active {
+  transform: scale(0.97);
+}
+
+.register-card button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ================= ERROR MESSAGE ================= */
+.error-message {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: -8px;
+  animation: fadeUp 0.4s ease forwards;
+}
+
+/* ================= FOOTER TEXT ================= */
+.register-footer {
+  margin-top: 18px;
+  text-align: center;
+  font-family: var(--font-secondary);
+  font-size: 13px;
+  color: #666;
+}
+
+.register-footer a {
+  color: var(--primary-color);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.register-footer a:hover {
+  text-decoration: underline;
+}
+
+/* ================= ANIMATION ================= */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 480px) {
+  .register-card {
+    padding: 32px 24px;
+  }
+
+  .register-card h2 {
+    font-size: 24px;
+  }
+
+  .register-card input,
+  .register-card button[type="submit"] {
+    font-size: 13px;
+    padding: 12px 14px;
+  }
+}

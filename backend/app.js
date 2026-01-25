@@ -1,44 +1,41 @@
 import express from "express";
-import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 import morgan from "morgan";
-import productRoutes from "./src/routes/productRoutes.js";
 import path from "path";
+import { fileURLToPath } from "url";
+
+import connectDB from "./src/config/dbConnection.js";
+import productRoutes from "./src/routes/productRoutes.js";
+import userRoutes from "./src/routes/userRoutes.js";
 
 dotenv.config();
+connectDB();
 
 const app = express();
 
-// middleware
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+/* ===== Middleware ===== */
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
-// static uploads
-app.use("/uploads", express.static(path.join("public/uploads")));
+/* ===== Static files ===== */
+app.use("/uploads", express.static(path.join(__dirname, "public/uploads")));
 
-// routes
+/* ===== Routes ===== */
+app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
 
 app.get("/", (req, res) => {
   res.json({ message: "API is running..." });
 });
 
+/* ===== Server ===== */
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`🚀 Server running at http://localhost:${PORT}`);
-});
-
-const MONGO_URI = process.env.MONGO_URI;
-
-if (MONGO_URI) {
-  mongoose
-    .connect(MONGO_URI)
-    .then(() => console.log("✅ MongoDB Connected"))
-    .catch(() =>
-      console.log("⚠️ MongoDB not connected, API running without DB")
-    );
-} else {
-  console.log("⚠️ MONGO_URI not set, skipping MongoDB connection");
-}
+app.listen(PORT, () =>
+  console.log(`🚀 Server running at http://localhost:${PORT}`),
+);

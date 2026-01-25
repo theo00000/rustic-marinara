@@ -3,6 +3,11 @@ import axios from "axios";
 import "./addProduct.css";
 
 export default function AddProduct() {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    window.location.href = "/login";
+  }
+
   const [form, setForm] = useState({
     name: "",
     price: "",

@@ -21,16 +21,45 @@ const promos = [
   { id: 3, image: specialOffer3, alt: "Family Meals Special Offer" },
 ];
 
-const testimonials = [ 
- { id: 1, name: "Andy M.", text: "The crust is perfectly crisp, and the Rustic Marinara Sauce adds that rich, tangy depth. I find myself ordering it every weekend.", },
- { id: 2, name: "Barbie & Ken", text: "We love the combo meals. Great value and perfect for dinner date. Rustic marinara is amore.", }, 
- { id: 3, name: "Charlie C.", text: "The Mango Sunset Fizz surprised me. Super refreshing and perfect with spicy tuna pizza.", }, 
- { id: 4, name: "Doramon", text: "Tasted just like the pizza I had in Rome. Absolute comfort food.", }, 
- { id: 5, name: "Edward", text: "If you love cheese, go for their Cheese Heaven. It just hit different.", }, 
- { id: 6, name: "Robert", text: "The service is fast and well-organized. From the website design to the ordering flow, everything feels thoughtfully built. Simple, yet professional.", }, ];
+const testimonials = [
+  {
+    id: 1,
+    name: "Andy M.",
+    text: "The crust is perfectly crisp, and the Rustic Marinara Sauce adds that rich, tangy depth. I find myself ordering it every weekend.",
+  },
+  {
+    id: 2,
+    name: "Barbie & Ken",
+    text: "We love the combo meals. Great value and perfect for dinner date. Rustic marinara is amore.",
+  },
+  {
+    id: 3,
+    name: "Charlie C.",
+    text: "The Mango Sunset Fizz surprised me. Super refreshing and perfect with spicy tuna pizza.",
+  },
+  {
+    id: 4,
+    name: "Doramon",
+    text: "Tasted just like the pizza I had in Rome. Absolute comfort food.",
+  },
+  {
+    id: 5,
+    name: "Edward",
+    text: "If you love cheese, go for their Cheese Heaven. It just hit different.",
+  },
+  {
+    id: 6,
+    name: "Robert",
+    text: "The service is fast and well-organized. From the website design to the ordering flow, everything feels thoughtfully built. Simple, yet professional.",
+  },
+];
 
 export default function Home() {
   const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+  }, []);
 
   // 🔹 fetch API
   useEffect(() => {
@@ -52,7 +81,7 @@ export default function Home() {
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.15 },
     );
 
     elements.forEach((el) => observer.observe(el));
@@ -61,7 +90,6 @@ export default function Home() {
 
   return (
     <main className="home-container">
-
       {/* PROMO */}
       <section className="grab-swiper" aria-label="Promotional Offers">
         <Swiper
@@ -73,20 +101,17 @@ export default function Home() {
           grabCursor
           speed={900}
           resistanceRatio={0.65}
-          autoplay={{ 
+          autoplay={{
             delay: 3200,
             disableOnInteraction: false,
             pauseOnMouseEnter: true,
-           }}
+          }}
           pagination={{ clickable: true }}
           className="promo-swiper"
         >
           {promos.map((promo) => (
             <SwiperSlide key={promo.id}>
-              <img src={promo.image} 
-              alt={promo.alt}
-              className="slider-img"
-              />
+              <img src={promo.image} alt={promo.alt} className="slider-img" />
             </SwiperSlide>
           ))}
         </Swiper>
@@ -100,7 +125,8 @@ export default function Home() {
           </h1>
           <p className="hero-subtitle">
             Taste the heart of Italy—fresh from our oven to your table.
-            <br /> Made with our signature Rustic Marinara Sauce and premium ingredients.
+            <br /> Made with our signature Rustic Marinara Sauce and premium
+            ingredients.
           </p>
 
           <div className="header-menu">
@@ -111,7 +137,6 @@ export default function Home() {
           {/* 🔥 API CAROUSEL */}
           <section className="carousel">
             {products.slice(0, 4).map((product) => {
-
               return (
                 <div className="card-item" key={product._id}>
                   <img
@@ -136,13 +161,13 @@ export default function Home() {
           </NavLink>
         </div>
 
-        <div className="testimonial-promo"> 
-          <img src={specialOffer1} alt="Family Meal Special Offer" /> 
-          <img src={specialOffer2} alt="June Special Offer" /> 
+        <div className="testimonial-promo">
+          <img src={specialOffer1} alt="Family Meal Special Offer" />
+          <img src={specialOffer2} alt="June Special Offer" />
         </div>
 
-        <h1 className="testimonial-title"> 
-          What Our <span>Customers</span> Are Saying 
+        <h1 className="testimonial-title">
+          What Our <span>Customers</span> Are Saying
         </h1>
 
         <div className="testimonial-grid">
@@ -155,27 +180,36 @@ export default function Home() {
           ))}
         </div>
       </section>
-      
-      {/* DOWNLOAD APP */} 
-      <section className="download-app-section reveal delay-1"> 
-        <div className="download-app-container"> 
-          <div className="app-mockup reveal delay-2"> 
-            <div className="mockup-placeholder"> 
-              <img src={mockUp} 
-              alt="Mockup APP Rustic Marinara" 
-              className="mockup-img" /> 
-            </div> 
-          </div> 
-        <div className="app-content reveal delay-3"> 
-          <h2>Download <br /><span>Our Resto Mobile App</span></h2> 
-          <p>Get more exclusive discounts & voucher to apply with Our Resto Mobile app</p> 
-        </div> <button className="qr-button reveal delay-4"> 
-        <div className="qr-container-inner"> 
-          <QRCode value="https://rusticmarinara.com/app" size={50} /> 
-        </div> 
-        <span className="qr-text-hint">SCAN ME</span> 
-        </button>
-      </div>
+
+      {/* DOWNLOAD APP */}
+      <section className="download-app-section reveal delay-1">
+        <div className="download-app-container">
+          <div className="app-mockup reveal delay-2">
+            <div className="mockup-placeholder">
+              <img
+                src={mockUp}
+                alt="Mockup APP Rustic Marinara"
+                className="mockup-img"
+              />
+            </div>
+          </div>
+          <div className="app-content reveal delay-3">
+            <h2>
+              Download <br />
+              <span>Our Resto Mobile App</span>
+            </h2>
+            <p>
+              Get more exclusive discounts & voucher to apply with Our Resto
+              Mobile app
+            </p>
+          </div>{" "}
+          <button className="qr-button reveal delay-4">
+            <div className="qr-container-inner">
+              <QRCode value="https://rusticmarinara.com/app" size={50} />
+            </div>
+            <span className="qr-text-hint">SCAN ME</span>
+          </button>
+        </div>
       </section>
     </main>
   );

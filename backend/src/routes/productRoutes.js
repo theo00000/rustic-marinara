@@ -1,5 +1,6 @@
 import express from "express";
 import upload from "../config/multer.js";
+import auth from "../middleware/authMiddleware.js"
 import {
   createProduct,
   getAllProducts,
@@ -10,9 +11,16 @@ import {
 
 const router = express.Router();
 
-router.post("/", upload.single("image"), createProduct);
 router.get("/", getAllProducts);
 router.get("/:id", getProductById);
+
+router.post(
+  "/", 
+  auth,
+  upload.single("image"),
+  createProduct
+);
+
 router.put("/:id", updateProduct);
 router.delete("/:id", deleteProduct);
 

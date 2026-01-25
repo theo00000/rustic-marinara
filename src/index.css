@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
 
 /* ================= ROOT VARIABLES ================= */
 :root {
-  --font-primary: 'Raleway', sans-serif;
-  --font-secondary: 'Quicksand', sans-serif;
+  --font-primary: "Raleway", sans-serif;
+  --font-secondary: "Quicksand", sans-serif;
 
   --star-color: #c23b22;
   --dark-bg-color: #2e2e2e;
@@ -20,9 +20,9 @@
   --radius-md: 16px;
   --radius-lg: 24px;
 
-  --shadow-soft: 0 8px 20px rgba(0,0,0,.08);
-  --shadow-mid: 0 14px 32px rgba(0,0,0,.14);
-  --shadow-deep: 0 22px 48px rgba(0,0,0,.18);
+  --shadow-soft: 0 8px 20px rgba(0, 0, 0, 0.08);
+  --shadow-mid: 0 14px 32px rgba(0, 0, 0, 0.14);
+  --shadow-deep: 0 22px 48px rgba(0, 0, 0, 0.18);
   --card-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
   --rustic-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
 
@@ -62,11 +62,11 @@ body.lock {
 /* ================= REACT ROOT ================= */
 #root {
   min-height: 100vh;
-  position: relative; 
+  position: relative;
 }
 
 /* ================= CODE ================= */
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family:
+    source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
