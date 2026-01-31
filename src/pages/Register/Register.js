@@ -27,11 +27,11 @@ export default function Register() {
       if (!res.ok) throw new Error(data.message || "Registrasi gagal");
 
       // Simpan token JWT setelah response berhasil
-      if (data.token) {
+      if (data.token && data.user) {
         localStorage.setItem("token", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user));
       }
 
-      alert("Registrasi berhasil, silakan login");
       window.location.href = "/login";
     } catch (err) {
       setError(err.message);

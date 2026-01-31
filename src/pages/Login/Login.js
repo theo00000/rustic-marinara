@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"; // ✅ WAJIB
 import { useLoader } from "../../components/LoaderContext";
 import "./login.css";
 
@@ -8,6 +9,7 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const { setLoading } = useLoader();
+  const navigate = useNavigate(); // ✅ WAJIB
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -24,10 +26,12 @@ export default function Login() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Login gagal");
 
+      // ✅ SIMPAN DENGAN BENAR
       localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data));
+      localStorage.setItem("user", JSON.stringify(data.user));
 
-      window.location.href = "/";
+      // ✅ SATU redirect saja
+      navigate("/");
     } catch (err) {
       setError(err.message);
     } finally {
@@ -40,6 +44,7 @@ export default function Login() {
       <div className="login-card">
         <form onSubmit={handleLogin}>
           <h2>Login</h2>
+
           <input
             type="email"
             placeholder="Email"
@@ -47,6 +52,7 @@ export default function Login() {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
+
           <div className="password-wrapper">
             <input
               type={showPassword ? "text" : "password"}
@@ -63,7 +69,9 @@ export default function Login() {
               {showPassword ? "🙈" : "👁️"}
             </button>
           </div>
+
           {error && <p className="error-message">{error}</p>}
+
           <button type="submit">Login</button>
         </form>
       </div>

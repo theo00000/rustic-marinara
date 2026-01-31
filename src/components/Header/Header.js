@@ -9,140 +9,160 @@ export default function Header() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // cek auth
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    const storedUser = localStorage.getItem("user");
-    if (token && storedUser) {
-      setUser(JSON.parse(storedUser));
-    } else {
-      setUser(null);
-    }
-  }, [location]);
-
-  // tutup sidebar saat pindah halaman
-  useEffect(() => {
-    setMenuOpen(false);
-  }, [location]);
-
-  // lock scroll saat sidebar open
-  useEffect(() => {
-    document.body.classList.toggle("lock", menuOpen);
-    return () => document.body.classList.remove("lock");
-  }, [menuOpen]);
+  const navLinks = [
+    { to: "/", label: "HOME" },
+    { to: "/menu", label: "MENU" },
+    { to: "/deals", label: "DEALS" },
+    { to: "/about-us", label: "ABOUT US" },
+  ];
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     setUser(null);
+    setMenuOpen(false);
     navigate("/login");
   };
 
   const navClass = ({ isActive }) =>
     isActive ? "nav-link active" : "nav-link";
 
+  // Cek auth
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const storedUser = localStorage.getItem("user");
+    if (token && storedUser) setUser(JSON.parse(storedUser));
+    else setUser(null);
+  }, [location]);
+
+  // Tutup sidebar saat pindah halaman
+  useEffect(() => setMenuOpen(false), [location]);
+
+  // Lock scroll saat sidebar open
+  useEffect(() => {
+    document.body.classList.toggle("lock", menuOpen);
+    return () => document.body.classList.remove("lock");
+  }, [menuOpen]);
+
+  // Staggered animation + resize listener
+  useEffect(() => {
+    const links = document.querySelectorAll(".sidebar .nav-link");
+    links.forEach((link, index) => {
+      link.style.setProperty("--delay", `${index * 0.05}s`);
+    });
+
+    const handleResize = () => {
+      if (window.innerWidth > 768) setMenuOpen(false);
+    };
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <>
       <header className="header-container">
-        {/* LEFT */}
+        {/* Logo */}
         <div className="logo-wrap">
           <img src={logoTerang} alt="Rustic Marinara Logo" />
         </div>
 
-        {/* CENTER */}
+        {/* Desktop Navigation */}
         <nav className="nav-desktop">
-          <NavLink to="/" className={navClass}>
-            HOME
-          </NavLink>
-          <NavLink to="/menu" className={navClass}>
-            MENU
-          </NavLink>
-          <NavLink to="/deals" className={navClass}>
-            DEALS
-          </NavLink>
-          <NavLink to="/about-us" className={navClass}>
-            ABOUT US
-          </NavLink>
+          {navLinks.map((link) => (
+            <NavLink key={link.to} to={link.to} className={navClass}>
+              {link.label}
+            </NavLink>
+          ))}
         </nav>
 
-        {/* RIGHT */}
+        {/* Right Side / Auth */}
         <div className="header-right">
           {user ? (
             <>
               <span className="nav-user">Hi, {user.name}</span>
+
               <NavLink to="/profile" className={navClass}>
                 PROFILE
               </NavLink>
-              <button className="logout-btn" onClick={handleLogout}>
-                LOGOUT
-              </button>
             </>
           ) : (
             <>
               <NavLink to="/login" className={navClass}>
                 LOGIN
               </NavLink>
-              <NavLink to="/register" className="nav-link register">
+
+              <NavLink to="/register" className={navClass}>
                 REGISTER
               </NavLink>
             </>
           )}
         </div>
 
-        {/* MOBILE TOGGLE */}
+        {/* Mobile Menu Toggle */}
         <button
-          className="menu-toggle"
-          onClick={() => setMenuOpen(true)}
-          aria-label="Open menu"
+          className={`menu-toggle ${menuOpen ? "open" : ""}`}
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-sidebar"
         >
           ☰
         </button>
       </header>
 
-      {/* OVERLAY */}
+      {/* Overlay */}
       <div
         className={`overlay ${menuOpen ? "show" : ""}`}
         onClick={() => setMenuOpen(false)}
       />
 
-      {/* MOBILE SIDEBAR */}
-      <nav className={`sidebar ${menuOpen ? "open" : ""}`}>
-        <button className="close-btn" onClick={() => setMenuOpen(false)}>
+      {/* Mobile Sidebar */}
+      <nav
+        id="mobile-sidebar"
+        className={`sidebar ${menuOpen ? "open" : ""}`}
+        aria-hidden={!menuOpen}
+      >
+        <button
+          className="close-btn"
+          onClick={() => setMenuOpen(false)}
+          aria-label="Close menu"
+        >
           ✕
         </button>
 
-        <NavLink to="/" className={navClass}>
-          HOME
-        </NavLink>
-        <NavLink to="/menu" className={navClass}>
-          MENU
-        </NavLink>
-        <NavLink to="/deals" className={navClass}>
-          DEALS
-        </NavLink>
-        <NavLink to="/about-us" className={navClass}>
-          ABOUT US
-        </NavLink>
+        <div className="sidebar-content">
+          {navLinks.map((link) => (
+            <NavLink key={link.to} to={link.to} className={navClass}>
+              {link.label}
+            </NavLink>
+          ))}
 
-        {user ? (
-          <>
-            <span className="nav-user mobile">Hi, {user.name}</span>
-            <NavLink to="/profile" className={navClass}>
-              PROFILE
-            </NavLink>
-            <button className="logout-btn" onClick={handleLogout}>
-              LOGOUT
-            </button>
-          </>
-        ) : (
-          <>
-            <NavLink to="/login" className={navClass}>
-              LOGIN
-            </NavLink>
-            <NavLink to="/register" className="nav-link register">
-              REGISTER
-            </NavLink>
-          </>
+          {user ? (
+            <>
+              <span className="nav-user-mobile">Hi, {user.name}</span>
+
+              <NavLink to="/profile" className={navClass}>
+                PROFILE
+              </NavLink>
+            </>
+          ) : (
+            <>
+              <NavLink to="/login" className={navClass}>
+                LOGIN
+              </NavLink>
+
+              <NavLink to="/register" className={navClass}>
+                REGISTER
+              </NavLink>
+            </>
+          )}
+        </div>
+
+        {user && (
+          <button className="logout-btn" onClick={handleLogout}>
+            LOGOUT
+          </button>
         )}
       </nav>
     </>

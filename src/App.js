@@ -2,7 +2,6 @@ import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { useEffect, lazy, Suspense } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import ReactGA from "react-ga4";
 
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
